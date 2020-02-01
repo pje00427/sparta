@@ -36,13 +36,25 @@
 			font-family: 'Do Hyeon', sans-serif;
 			margin: 20px 400px 
 		}
-		
+		.table
+		{
+			margin:auto;
+			width: 500px;
+		}
 		
 	</style>
 	<script>
+
+		// $(document).ready(function(){
+			// $('#my-button').click(function(){
+				// order();
+			// })
+		// })	
+		
 		function q1(){
 			let text = $('#user-name').val();
 			let text2 = $('#user-ad').val();
+			let text3 = $()
 			if (text == ''){
 				alert('성함을 입력해주세요:)')
 
@@ -51,8 +63,35 @@
 		}
 	}
 	
+	function q2(){
 
+		$.ajax({
+			type: "GET",
+			url: "http://spartacodingclub.shop/order",
+			data: {},
+			success: function(response){
+				let order_list = response["orders"];
 
+				for (let i = 0; i < order_list.length; i++) {
+					let o_name = order_list[i]['name'];
+					let o_count = order_list[i]['count'];
+					let o_address = order_list[i]['address'];
+					let o_phone = order_list[i]['phone']; 
+					let temp_html = 
+					<tr>
+					<td>o_name</td>\
+					<td>o_count</td>\
+					<td>o_address</td>\
+					<td>o_phone</td>\
+					</tr> 
+
+					$('.table').append(temp_html);
+				}		
+			}
+
+		})		
+
+	}
 
 </script>
 
@@ -106,14 +145,45 @@
 				<span class="input-group-text" id="basic-addon1">전화번호</span>
 				
 			</div>
-			<input type="number" class="form-control" placeholder="number" aria-label="number" aria-describedby="basic-addon1">
+			<input type="number" id="order-nb" class="form-control" placeholder="number" aria-label="number" aria-describedby="basic-addon1">
 		</div>
 		<div class=myb>
 
-			<button type="button" id="my-button" class="btn btn-secondary btn-lg"onclick="q1()"
+			<button type="button" id="my-button" class="btn btn-secondary btn-lg" onclick="q1()"
 			>주문합니다</button>
 		</div>
 
 	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">성함</th>
+				<th scope="col">수량</th>
+				<th scope="col">주소</th>
+				<th scope="col">휴대폰</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">o_name</th>
+				<td>o_count</td>
+				<td>o_address</td>
+				<td>o_phone</td>
+			</tr>
+			<tr>
+				<th scope="row">2</th>
+				<td>Jacob</td>
+				<td>Thornton</td>
+				<td>@fat</td>
+			</tr>
+			<tr>
+				<th scope="row">3</th>
+				<td>Larry</td>
+				<td>the Bird</td>
+				<td>@twitter</td>
+			</tr>
 
+		</tbody>
+	</table>
 </body>
