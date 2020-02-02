@@ -2,188 +2,194 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<title>반지 팔아요</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<style type="text/css">
-		
-		.myimg{
-			background-image: url('http://m.onff.co.kr/web/product/big/201903/8e674cb155e6efcee1f51073ab7a4724.jpg');
-			background-size: cover;
-			background-position: center;
-			width: 450px;
-			height: 300px;
-			border-radius: 10px;
-			margin: 20px;
-		}
+    <meta charset="utf-8">
+    <title>반지 팔아요</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style type="text/css">
 
-		.wrap{
+        .myimg {
+            background-image: url('http://m.onff.co.kr/web/product/big/201903/8e674cb155e6efcee1f51073ab7a4724.jpg');
+            background-size: cover;
+            background-position: center;
+            width: 450px;
+            height: 300px;
+            border-radius: 10px;
+            margin: 20px;
+        }
 
-			margin:auto;
-			width: 500px;
-		}	
+        .wrap {
 
-		
-		.myp > h4
-		{
-			font-family: 'Do Hyeon', sans-serif;
-		}
-		
-		.myb
-		{
-			font-family: 'Do Hyeon', sans-serif;
-			margin: 20px 400px 
-		}
-		.table
-		{
-			margin:auto;
-			width: 500px;
-		}
-		
-	</style>
-	<script>
+            margin: auto;
+            width: 500px;
+        }
 
-		// $(document).ready(function(){
-			// $('#my-button').click(function(){
-				// order();
-			// })
-		// })	
-		
-		function q1(){
-			let text = $('#user-name').val();
-			let text2 = $('#user-ad').val();
-			let text3 = $()
-			if (text == ''){
-				alert('성함을 입력해주세요:)')
+        .myp > h4 {
+            font-family: 'Do Hyeon', sans-serif;
+        }
 
-			} else { $('#user-ad') .focus();
+        .myb {
+            font-family: 'Do Hyeon', sans-serif;
+            margin: 20px 400px
+        }
 
-		}
-	}
-	
-	function q2(){
+        .table {
+            margin: auto;
+            width: 500px;
+        }
 
-		$.ajax({
-			type: "GET",
-			url: "http://spartacodingclub.shop/order",
-			data: {},
-			success: function(response){
-				let order_list = response["orders"];
+    </style>
 
-				for (let i = 0; i < order_list.length; i++) {
-					let o_name = order_list[i]['name'];
-					let o_count = order_list[i]['count'];
-					let o_address = order_list[i]['address'];
-					let o_phone = order_list[i]['phone']; 
-					let temp_html = 
-					<tr>
-					<td>o_name</td>\
-					<td>o_count</td>\
-					<td>o_address</td>\
-					<td>o_phone</td>\
-					</tr> 
+<script>
 
-					$('.table').append(temp_html);
-				}		
-			}
+        function q1() {
+            console.log('111');
+            let text = $('#user-name').val();
+            let text2 = $('#user-ad').val();
+            // let text3 = $()
+            if (text == '') {
+                alert('성함을 입력해주세요:)');
 
-		})		
+            } else {
+                $('#user-ad').focus();
+            }
+        }
 
-	}
 
-</script>
+        function q2() {
 
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/order",
+                data: {},
+                success: function (response) {
+                    let order_list = response["orders"];
+                    let temp_html = '';
+                    for (let i = 0; i < order_list.length; i++) {
+                        let o_name = order_list[i]['name'];
+                        let o_count = order_list[i]['count'];
+                        let o_address = order_list[i]['address'];
+                        let o_phone = order_list[i]['phone'];
+                        temp_html += '<tr>\
+					<td>' + o_name + '</td>\
+					<td>' + o_count + '</td>\
+					<td>' + o_address + '</td>\
+					<td>' + o_phone + '</td>\
+					</tr> \
+					';
+
+                        $('.table').append(temp_html);
+                    }
+                }
+
+            });
+
+        }
+
+        $(document).ready(function(){
+        	q2();
+        })
+
+    </script>
 </head>
 
 <body>
 
 
-	<div class="wrap">
+<div class="wrap">
 
-		<div class="myimg">
+    <div class="myimg">
 
-		</div>
+    </div>
 
-		<div class="myp">
+    <div class="myp">
 
-			<h4>심플 볼드링</h4>
-			<h6>
-				<p>볼드한 무광링 입니다. 골드컬러로 클래식하면서 빈티지한 감성이 느껴집니다.</p><p>시선에 확 들어오는 두께감인 1cm 링과 얇은(0.2cm)링을 함께 혹은 따로 연출하셔도 좋습니다.</p>
-				<p>(1set : 1cm링 0.2cm링 2개) <U>PRICE: 30000</U></p>
-			</h6>
-		</div>
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<span  class="input-group-text" >주문자 성함</span>
-			</div>
-			<input id="user-name" type="text" class="form-control" placeholder="username" aria-label="address" aria-describedby="basic-addon1">
-		</div>
-		
-		
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<label class="input-group-text" for="inputGroupSelect01">수량</label>
-			</div>
-			<select class="custom-select" id="inputGroupSelect01">
-				<option selected>Choose quantity</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-			</select>
-		</div>
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="basic-addon1">주소</span>
-			</div>
-			<input type="text" id=user-ad class="form-control" placeholder="address" aria-label="address" aria-describedby="basic-addon1">
-		</div>
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="basic-addon1">전화번호</span>
-				
-			</div>
-			<input type="number" id="order-nb" class="form-control" placeholder="number" aria-label="number" aria-describedby="basic-addon1">
-		</div>
-		<div class=myb>
+        <h4>심플 볼드링</h4>
+        <h6>
+            <p>볼드한 무광링 입니다. 골드컬러로 클래식하면서 빈티지한 감성이 느껴집니다.</p>
+            <p>시선에 확 들어오는 두께감인 1cm 링과 얇은(0.2cm)링을 함께 혹은 따로 연출하셔도 좋습니다.</p>
+            <p>(1set : 1cm링 0.2cm링 2개) <U>PRICE: 30000</U></p>
+        </h6>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">주문자 성함</span>
+        </div>
+        <input id="user-name" type="text" class="form-control" placeholder="username" aria-label="address"
+               aria-describedby="basic-addon1">
+    </div>
 
-			<button type="button" id="my-button" class="btn btn-secondary btn-lg" onclick="q1()"
-			>주문합니다</button>
-		</div>
 
-	</div>
-	<table class="table">
-		<thead>
-			<tr>
-				<th scope="col">성함</th>
-				<th scope="col">수량</th>
-				<th scope="col">주소</th>
-				<th scope="col">휴대폰</th>
-				
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th scope="row">o_name</th>
-				<td>o_count</td>
-				<td>o_address</td>
-				<td>o_phone</td>
-			</tr>
-			<tr>
-				<th scope="row">2</th>
-				<td>Jacob</td>
-				<td>Thornton</td>
-				<td>@fat</td>
-			</tr>
-			<tr>
-				<th scope="row">3</th>
-				<td>Larry</td>
-				<td>the Bird</td>
-				<td>@twitter</td>
-			</tr>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">수량</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose quantity</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">주소</span>
+        </div>
+        <input type="text" id=user-ad class="form-control" placeholder="address" aria-label="address"
+               aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">전화번호</span>
 
-		</tbody>
-	</table>
+        </div>
+        <input type="number" id="order-nb" class="form-control" placeholder="number" aria-label="number"
+               aria-describedby="basic-addon1">
+    </div>
+    <div class="myb">
+
+        <button type="button" id="my-button" class="btn btn-secondary btn-lg" onclick="console.log(111); debugger; q1();">주문합니다
+        </button>
+
+        <button onclick=" btn_click()">test</button>
+    </div>
+
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">성함</th>
+        <th scope="col">수량</th>
+        <th scope="col">주소</th>
+        <th scope="col">휴대폰</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">o_name</th>
+        <td>o_count</td>
+        <td>o_address</td>
+        <td>o_phone</td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+    </tr>
+
+    </tbody>
+</table>
+
 </body>
+</html>
